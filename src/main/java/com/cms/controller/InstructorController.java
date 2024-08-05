@@ -32,9 +32,9 @@ public class InstructorController<Instuctor> {
     
 // method handles PUT requests to update a Instructor 
     @PutMapping(value="update/{instructorId}")
-    public ResponseEntity<Instructor> updateInstructor(@PathVariable Long instructorId,@RequestBody Instructor instructorDetails){
+    public ResponseEntity<String> updateInstructor(@PathVariable Long instructorId,@RequestBody Instructor instructorDetails){
     	Instructor updatedInstructor=instructorServ.updateInstructor(instructorId, instructorDetails);
-    	return ResponseEntity.status(HttpStatus.OK).body(updatedInstructor);
+    	return ResponseEntity.status(HttpStatus.OK).body("Instructor updated successfully");
     }
     
     

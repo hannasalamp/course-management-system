@@ -45,7 +45,7 @@ public class CourseServiceImpl implements CourseService{
 		    Course course = courseRepository.findById(id).orElseThrow(() -> new CourseNotFoundException("Course not found"));
 	        course.setCourseName(courseDTO.getCourseName());
 	        course.setCourseDescription(courseDTO.getCourseDescription());
-	        Instructor instructor = instructorRepository.findById(courseDTO.getInstructorId()).orElseThrow(() -> new RuntimeException("Instructor not found"));
+	        Instructor instructor = instructorRepository.findById(courseDTO.getInstructorId()).orElseThrow(() -> new InstructorNotFound("Instructor not found"));
 	        course.setInstructor(instructor);
 	        course = courseRepository.save(course);
 	        return convertToDTO(course);
@@ -55,6 +55,7 @@ public class CourseServiceImpl implements CourseService{
 		 Optional<Course> course = courseRepository.findById(id);
 	        return course.map(this::convertToDTO).orElse(null);
 	}
+	
 	@Override
 	public List<CourseDTO> getAllCourses() {
 		

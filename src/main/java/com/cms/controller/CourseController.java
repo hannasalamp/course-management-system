@@ -24,14 +24,14 @@ import com.cms.service.InstructorService;
 public class CourseController {
 	@Autowired 
 	CourseService courseService;
-//method for handle POST 
+//	method handles POST requests to create a new Course
 	 @PostMapping("/create")
 	    public ResponseEntity<String> createCourse(@RequestBody CourseDTO courseDTO) {
 	        CourseDTO createdCourse = courseService.createCourse(courseDTO);
 	        return ResponseEntity.status(HttpStatus.CREATED).body("Course created successfully");
 	    }
 	
-	
+//		method handles PUT requests to update course	
 	 @PutMapping("update/{id}")
 	    public ResponseEntity<String> updateCourse(@PathVariable long id, @RequestBody CourseDTO courseDTO) {
 	        CourseDTO updatedCourse = courseService.updateCourse(id, courseDTO);
@@ -41,6 +41,7 @@ public class CourseController {
 	        return ResponseEntity.status(HttpStatus.CREATED).body("Course updated successfully");
 	    }
 	 
+//		method handles GET requests to fetch a  Student by using Id
 	 @GetMapping("/{id}")
 	    public ResponseEntity<CourseDTO> getCourseById(@PathVariable long id) {
 	        CourseDTO course = courseService.getCourseById(id);
@@ -49,6 +50,8 @@ public class CourseController {
 	        }
 	        return ResponseEntity.ok(course);
 	    }
+	 
+//		method handles GET requests to fetch all course 
 	 @GetMapping
 	    public List<CourseDTO> getAllCourses() {
 	        return courseService.getAllCourses();

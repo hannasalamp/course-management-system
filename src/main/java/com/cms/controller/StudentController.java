@@ -28,16 +28,16 @@ public class StudentController {
 	
 //	method handles POST requests to create a new Student
 	    @PostMapping(value="create")
-	    public ResponseEntity<Student> createStudent(@RequestBody Student student) {
+	    public ResponseEntity<String> createStudent(@RequestBody Student student) {
 	        Student createdStudent = studentService.CreateStudent(student);
-	        return ResponseEntity.status(HttpStatus.CREATED).body(createdStudent);
+	        return ResponseEntity.status(HttpStatus.CREATED).body("Student created Successfully");
 	    }
 	    
 //	method handles PUT request to update the student
 	    @PutMapping(value="update/{studentId}")
-	    public ResponseEntity<Student> updateStudent(@PathVariable Long studentId, @RequestBody Student studentDetails) {
+	    public ResponseEntity<String> updateStudent(@PathVariable Long studentId, @RequestBody Student studentDetails) {
 	        Student updatedStudent = studentService.updateStudent(studentId, studentDetails);
-	        return ResponseEntity.status(HttpStatus.OK).body(updatedStudent);
+	        return ResponseEntity.status(HttpStatus.OK).body("Student updated successfully");
 	    }
 	    
 //	 method handles GET request to fetch the student by using Id
