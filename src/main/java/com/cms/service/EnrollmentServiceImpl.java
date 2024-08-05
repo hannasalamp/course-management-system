@@ -39,7 +39,6 @@ public class EnrollmentServiceImpl implements EnrollmentService{
         enrollment.setStudent(student);
         enrollment.setCourse(course);
         enrollment.setEnrollmentDate(LocalDate.now());
-
         Enrollment savedEnrollment = enrollmentRepository.save(enrollment);
         return mapToEnrollmentDTO(savedEnrollment);
     }
@@ -52,13 +51,20 @@ public class EnrollmentServiceImpl implements EnrollmentService{
         enrollmentDTO.setCourseId(enrollment.getCourse().getCourseId());
         return enrollmentDTO;
     }
-//
-//
-////	@Override
-////	public List<EnrollmentDTO> getEnrollmentsByStudentId(Long studentId) {
-////		List<Enrollment> enrollments = enrollmentRepository.findByStudentId(studentId);
-////        return enrollments.stream().map(this::mapToEnrollmentDTO).collect(Collectors.toList());
-////	}
-//
-//	
+
+
+	@Override
+	public List<EnrollmentDTO> getEnrollmentsByStudentId(Long studentId) {
+		List<Enrollment> enrollments = enrollmentRepository.findByStudentId(studentId);
+        return enrollments.stream().map(this::mapToEnrollmentDTO).collect(Collectors.toList());
+	}
+
+
+	@Override
+	public List<EnrollmentDTO> getEnrollmentsByCourseId(Long courseId) {
+		List<Enrollment> enrollments=enrollmentRepository.findByCourseId(courseId);
+		 return enrollments.stream().map(this::mapToEnrollmentDTO).collect(Collectors.toList());
+	}
+
+	
 }

@@ -24,6 +24,7 @@ public class EnrollmentController {
 	private EnrollmentService enrollmentService;
 	
 //	method handles POST requests to Enrolling a student in a course.
+	
 	@PostMapping("/students/{studentId}/courses/{courseId}")
     public ResponseEntity<EnrollmentDTO> enrollStudentInCourse(@PathVariable Long studentId, @PathVariable Long courseId) {
         EnrollmentDTO enrollmentDTO = enrollmentService.enrollStudentInCourse(studentId, courseId);
@@ -31,13 +32,20 @@ public class EnrollmentController {
     }
 
 //method handles GET request to Fetching all courses a student is enrolled in.
-//	@GetMapping("/students/{studentId}/enrollments")
-//    public ResponseEntity<List<EnrollmentDTO>> getEnrollmentsByStudentId(@PathVariable Long studentId) {
-//        List<EnrollmentDTO> enrollments = enrollmentService.getEnrollmentsByStudentId(studentId);
-//        return ResponseEntity.ok(enrollments);
-//    }
+	
+	@GetMapping("/students/{studentId}")
+    public ResponseEntity<List<EnrollmentDTO>> getEnrollmentsByStudentId(@PathVariable Long studentId) {
+        List<EnrollmentDTO> enrollments = enrollmentService.getEnrollmentsByStudentId(studentId);
+        return ResponseEntity.ok(enrollments);
+    }
 	
 //method handles GET request to  Fetching all students enrolled in a course
+	
+	 @GetMapping("/courses/{courseId}")
+	    public ResponseEntity<List<EnrollmentDTO>> getEnrollmentsByCourseId(@PathVariable Long courseId) {
+	        List<EnrollmentDTO> enrollments = enrollmentService.getEnrollmentsByCourseId(courseId);
+	        return ResponseEntity.ok(enrollments);
+	    }
 	
 
 

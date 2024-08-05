@@ -12,7 +12,9 @@ public interface EnrollmentService {
 
 	EnrollmentDTO enrollStudentInCourse(Long studentId, Long courseId);
 
-//	List<EnrollmentDTO> getEnrollmentsByStudentId(Long studentId);
+	List<EnrollmentDTO> getEnrollmentsByStudentId(Long studentId);
+
+	List<EnrollmentDTO> getEnrollmentsByCourseId(Long courseId);
 
 	
 

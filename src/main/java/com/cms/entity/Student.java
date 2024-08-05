@@ -16,14 +16,19 @@ import jakarta.persistence.Id;
 //@Getter
 //@AllArgsConstructor
 //@NoArgsConstructor
+
 @Entity
 public class Student {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="student_id")
 	private Long studentId;
+	
 	@Column(nullable=false)
 	private String firstName;
+	
 	private String lastName;
+	
 	@Column(unique=true)
 	private String email;
 	public Student() {
@@ -61,6 +66,7 @@ public class Student {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 
 	
 	
