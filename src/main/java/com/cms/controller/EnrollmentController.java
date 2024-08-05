@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cms.dto.EnrollCourseDTO;
+import com.cms.dto.EnrollStudentDTO;
 import com.cms.dto.EnrollmentDTO;
 import com.cms.entity.Enrollment;
 import com.cms.service.EnrollmentService;
@@ -34,16 +36,16 @@ public class EnrollmentController {
 //method handles GET request to Fetching all courses a student is enrolled in.
 	
 	@GetMapping("/students/{studentId}")
-    public ResponseEntity<List<EnrollmentDTO>> getEnrollmentsByStudentId(@PathVariable Long studentId) {
-        List<EnrollmentDTO> enrollments = enrollmentService.getEnrollmentsByStudentId(studentId);
+    public ResponseEntity<List<EnrollCourseDTO>> getEnrollmentsByStudentId(@PathVariable Long studentId) {
+        List<EnrollCourseDTO> enrollments = enrollmentService.getEnrollmentsByStudentId(studentId);
         return ResponseEntity.ok(enrollments);
     }
 	
 //method handles GET request to  Fetching all students enrolled in a course
 	
 	 @GetMapping("/courses/{courseId}")
-	    public ResponseEntity<List<EnrollmentDTO>> getEnrollmentsByCourseId(@PathVariable Long courseId) {
-	        List<EnrollmentDTO> enrollments = enrollmentService.getEnrollmentsByCourseId(courseId);
+	    public ResponseEntity<List<EnrollStudentDTO>> getEnrollmentsByCourseId(@PathVariable Long courseId) {
+	        List<EnrollStudentDTO> enrollments = enrollmentService.getEnrollmentsByCourseId(courseId);
 	        return ResponseEntity.ok(enrollments);
 	    }
 	

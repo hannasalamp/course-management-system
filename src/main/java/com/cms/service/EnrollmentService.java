@@ -3,6 +3,8 @@ package com.cms.service;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.cms.dto.EnrollCourseDTO;
+import com.cms.dto.EnrollStudentDTO;
 import com.cms.dto.EnrollmentDTO;
 import com.cms.entity.Course;
 import com.cms.entity.Enrollment;
@@ -12,9 +14,9 @@ public interface EnrollmentService {
 
 	EnrollmentDTO enrollStudentInCourse(Long studentId, Long courseId);
 
-	List<EnrollmentDTO> getEnrollmentsByStudentId(Long studentId);
+	List<EnrollCourseDTO> getEnrollmentsByStudentId(Long studentId);
 
-	List<EnrollmentDTO> getEnrollmentsByCourseId(Long courseId);
+	List<EnrollStudentDTO> getEnrollmentsByCourseId(Long courseId);
 
 	
 

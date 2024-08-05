@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.cms.customeexception.CourseNotFoundException;
 import com.cms.customeexception.StudentNotFound;
+import com.cms.dto.EnrollCourseDTO;
+import com.cms.dto.EnrollStudentDTO;
 import com.cms.dto.EnrollmentDTO;
 import com.cms.entity.Course;
 import com.cms.entity.Enrollment;
@@ -53,18 +55,31 @@ public class EnrollmentServiceImpl implements EnrollmentService{
     }
 
 
-	@Override
-	public List<EnrollmentDTO> getEnrollmentsByStudentId(Long studentId) {
-		List<Enrollment> enrollments = enrollmentRepository.findByStudentId(studentId);
-        return enrollments.stream().map(this::mapToEnrollmentDTO).collect(Collectors.toList());
-	}
+    @Override
+    public List<EnrollCourseDTO> getEnrollmentsByStudentId(Long studentId) {
+        List<Enrollment> enrollments = enrollmentRepository.findByStudentId(studentId); 
+        return enrollments.stream().map(enrollment -> {
+            EnrollCourseDTO dto = new EnrollCourseDTO();
+            dto.setId(enrollment.getId());
+            dto.setCourseId(enrollment.getCourse().getCourseId());
+            dto.setCourseName(enrollment.getCourse().getCourseName());
+            return dto;
+        }).collect(Collectors.toList());
+    }
 
 
 	@Override
-	public List<EnrollmentDTO> getEnrollmentsByCourseId(Long courseId) {
+	public List<EnrollStudentDTO> getEnrollmentsByCourseId(Long courseId) {
 		List<Enrollment> enrollments=enrollmentRepository.findByCourseId(courseId);
-		 return enrollments.stream().map(this::mapToEnrollmentDTO).collect(Collectors.toList());
+		return enrollments.stream().map(enrollment -> {
+            EnrollStudentDTO dto = new EnrollStudentDTO();
+            dto.setId(enrollment.getId());
+            dto.setStudentId(enrollment.getStudent().getStudentId());
+            dto.setStudentName(enrollment.getStudent().getFirstName());
+            return dto;
+        }).collect(Collectors.toList());
 	}
-
+    
+	
 	
 }
