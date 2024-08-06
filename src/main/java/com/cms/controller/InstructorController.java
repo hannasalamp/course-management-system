@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +24,7 @@ public class InstructorController<Instuctor> {
 	InstructorService instructorServ;
 	
 //	method handles POST requests to create a new Instructor
+	
     @PostMapping(value="create")
     public ResponseEntity<String> createInstructor(@RequestBody Instructor instr) {
         Instructor createdInstructor = instructorServ.CreateInstructor(instr);
@@ -31,6 +33,7 @@ public class InstructorController<Instuctor> {
     
     
 // method handles PUT requests to update a Instructor 
+    
     @PutMapping(value="update/{instructorId}")
     public ResponseEntity<String> updateInstructor(@PathVariable Long instructorId,@RequestBody Instructor instructorDetails){
     	Instructor updatedInstructor=instructorServ.updateInstructor(instructorId, instructorDetails);
@@ -39,6 +42,7 @@ public class InstructorController<Instuctor> {
     
     
 // method handles GET requests to fetch Instructor by id
+    
     @GetMapping(value="fetch/{instructorId}")
     public ResponseEntity<Instructor> fetchInstructor(@PathVariable Long instructorId){
     	Instructor fetchedInstructor=instructorServ.fetchInstructor(instructorId);
@@ -46,11 +50,18 @@ public class InstructorController<Instuctor> {
     }
     
 // method handles GET requests to fetch all Instructor
+    
     @GetMapping
     public ResponseEntity<List<Instructor>> fetchAllInstructors(){
     	List<Instructor> instructors=instructorServ.fetchAllInstructors();
     	return ResponseEntity.status(HttpStatus.OK).body(instructors);
     }
     
-
+// method handles DELETE requests to delete Instructor by id
+    
+//    @DeleteMapping(value="delete/{instructorId}")
+//    public ResponseEntity<String> deleteInstructor(@PathVariable Long instructorId) {
+//        instructorServ.deleteInstructor(instructorId);
+//        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Instructor deleted successfully");
+//    }
 }

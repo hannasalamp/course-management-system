@@ -12,12 +12,18 @@ import org.springframework.data.domain.Pageable;
 import com.cms.customeexception.NullParameterException;
 import com.cms.customeexception.StudentNotFound;
 import com.cms.entity.Student;
+import com.cms.repository.EnrollmentRepository;
 import com.cms.repository.StudentRepository;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class StudentServiceImpl implements StudentService {
 	@Autowired
 	StudentRepository studentRepo;
+	
+	@Autowired
+	EnrollmentRepository enrollmentRepo;
 
 //	Logic for create a new student
 	@Override
@@ -55,6 +61,14 @@ public class StudentServiceImpl implements StudentService {
 	public List<Student> fetchAllStudents() {
         return studentRepo.findAll();
     }
+
+	@Override
+	@Transactional
+	public void deleteStudent(Long studentId) {
+		enrollmentRepo.deleteByStudentId(studentId);
+		
+		studentRepo.deleteById(studentId);	
+	}
 	
 	
 	}

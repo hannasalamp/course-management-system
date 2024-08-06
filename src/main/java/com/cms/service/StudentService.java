@@ -15,6 +15,8 @@ public interface StudentService {
 
 	List<Student> fetchAllStudents();
 
+	void deleteStudent(Long studentId);
+
 	
 
 }

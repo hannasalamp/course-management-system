@@ -14,4 +14,6 @@ public interface InstructorService {
 
 	List<Instructor> fetchAllInstructors();
 
+	//void deleteInstructor(Long instructorId);
+
 }

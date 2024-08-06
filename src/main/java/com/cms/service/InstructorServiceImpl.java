@@ -7,12 +7,18 @@ import org.springframework.stereotype.Service;
 
 import com.cms.customeexception.InstructorNotFound;
 import com.cms.entity.Instructor;
+import com.cms.repository.CourseRepository;
 import com.cms.repository.InstructorRepository;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class InstructorServiceImpl implements InstructorService{
 	@Autowired
 	InstructorRepository instructorRepo;
+	
+	@Autowired
+	CourseRepository courseRepository;
 
 //	logic for creating a new Instructor
 	@Override
@@ -49,5 +55,16 @@ public class InstructorServiceImpl implements InstructorService{
 	
 		return instructorRepo.findAll();
 	}
+
+
+//	@Override
+//	@Transactional
+//    public void deleteInstructor(Long instructorId) {
+//	 // Dissociate the instructor from all courses
+//		courseRepository.dissociateInstructor(instructorId);
+//    // Then delete the instructor
+//		instructorRepo.deleteById(instructorId);
+//    
+//    }
 
 }
